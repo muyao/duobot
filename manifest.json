@@ -1,8 +1,8 @@
 {
 	"manifest_version": 3,
 	"name": "DuoBot",
-	"version": "1.10.8",
-	"description": "Don't let Duo find out...",
+	"version": "1.10.9",
+	"description": "Don't let Duo know...",
 	"permissions": [
 		"declarativeNetRequest"
 	],
