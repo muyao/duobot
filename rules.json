@@ -1,0 +1,28 @@
+[
+	{
+		"id": 1,
+		"priority": 1,
+		"action": {
+			"type": "block"
+		},
+		"condition": {
+			"urlFilter": "https://d35aaqx5ub95lt.cloudfront.net/js/2434-bb89a550.js",
+			"resourceTypes": [
+				"script"
+			]
+		}
+	},
+	{
+		"id": 2,
+		"priority": 1,
+		"action": {
+			"type": "block"
+		},
+		"condition": {
+			"urlFilter": "https://d35aaqx5ub95lt.cloudfront.net/js/2463-046b5729.js",
+			"resourceTypes": [
+				"script"
+			]
+		}
+	}
+]

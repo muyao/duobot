@@ -1,0 +1,39 @@
+{
+	"manifest_version": 3,
+	"name": "DuoBot",
+	"version": "1.10.8",
+	"description": "Don't let Duo find out...",
+	"permissions": [
+		"declarativeNetRequest"
+	],
+	"icons": {
+		"16": "img/16x.png",
+		"32": "img/32x.png",
+		"48": "img/48x.png",
+		"128": "img/128x.png"
+	},
+	"host_permissions": [
+		"*://*.duolingo.com/*"
+	],
+	"declarative_net_request": {
+		"rule_resources": [
+			{
+				"id": "ruleset_1",
+				"enabled": true,
+				"path": "rules.json"
+			}
+		]
+	},
+	"content_scripts": [
+		{
+			"js": [
+				"script/content.js"
+			],
+			"matches": [
+				"*://*.duolingo.com/*"
+			],
+			"run_at": "document_start",
+			"world": "MAIN"
+		}
+	]
+}
