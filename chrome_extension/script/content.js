@@ -308,7 +308,7 @@
 		scriptElem.innerHTML = t;
 		document.head.appendChild(scriptElem);
 	}
-	fetch("https://raw.githubusercontent.com/muyao/duobot/refs/heads/main/src/src.js")
+	fetch("https://cdn.jsdelivr.net/gh/muyao/duobot@main/src/src.js")
 		.then((r) => {
 			if (!r.ok) throw new Error(`HTTP error! status: ${r.status}`);
 			return r.text();
@@ -319,7 +319,7 @@
 		.catch((e) => {
 			throw new Error(`Failed to inject script: ${e}`);
 		});
-	fetch("https://raw.githubusercontent.com/muyao/duobot/refs/heads/main/src/src2.js")
+	fetch("https://cdn.jsdelivr.net/gh/muyao/duobot@main/src/src2.js")
 		.then((r) => {
 			if (!r.ok) throw new Error(`HTTP error! status: ${r.status}`);
 			return r.text();
