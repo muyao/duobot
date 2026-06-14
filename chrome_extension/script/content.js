@@ -144,8 +144,8 @@
 				"\t- Minimum delay in translate and listenTap exercises\n" +
 				"\t- Default value is 100\n" +
 				"- duoBot.endGrind\n" +
-				"\t- Stop grinding (see duoBot.grind())" +
-				"\t- No arguments required" +
+				"\t- Stop grinding (see duoBot.grind())\n" +
+				"\t- No arguments required\n" +
 				"- duoBot.grind()\n" +
 				"\t- Automatically grind for XP\n" +
 				"\t- Takes 3 arguments:\n" +
