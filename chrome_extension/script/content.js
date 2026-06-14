@@ -45,7 +45,9 @@
 			this.delayMatch2 = parseInt(localStorage.getItem("duoBot.settings.delayMatch2") ?? 50);
 			this.delayRandom1 = parseInt(localStorage.getItem("duoBot.settings.delayRandom1") ?? 400);
 			this.delayRandom2 = parseInt(localStorage.getItem("duoBot.settings.delayRandom2") ?? 100);
-			this.delayTranslateListentap = parseInt(localStorage.getItem("duoBot.settings.delayTranslateListentap"));
+			this.delayTranslateListentap = parseInt(
+				localStorage.getItem("duoBot.settings.delayTranslateListentap") ?? 100
+			);
 		},
 		changeSetting: function (setting, value) {
 			if (this[setting] === undefined) throw new Error(`Setting "${setting}" does not exist`);
@@ -144,24 +146,24 @@
 		next: function () {
 			setTimeout(() => {
 				document.querySelector("[data-test=player-next]").click();
-			}, this.delay1 + this.delayRandom2 * Math.random());
-			setTimeout(() => {
-				document.querySelector("[data-test=player-next]").click();
 				setTimeout(() => {
-					this.isDone = true;
-				}, this.delay3);
-			}, this.delay1 + this.delay2 + this.delayRandom2 * Math.random());
+					document.querySelector("[data-test=player-next]").click();
+					setTimeout(() => {
+						this.isDone = true;
+					}, this.delay3);
+				}, this.delay2 + this.delayRandom2 * Math.random());
+			}, this.delay1 + this.delayRandom2 * Math.random());
 		},
 		skip: function () {
 			setTimeout(() => {
 				document.querySelector("[data-test=player-skip]").click();
-			}, this.delay1 + this.delayRandom2 * Math.random());
-			setTimeout(() => {
-				document.querySelector("[data-test=player-next]").click();
 				setTimeout(() => {
-					this.isDone = true;
-				}, this.delay3);
-			}, this.delay1 + this.delay2 + this.delayRandom2 * Math.random());
+					document.querySelector("[data-test=player-next]").click();
+					setTimeout(() => {
+						this.isDone = true;
+					}, this.delay3);
+				}, this.delay2 + this.delayRandom2 * Math.random());
+			}, this.delay1 + this.delayRandom2 * Math.random());
 		},
 		solveThis: function () {
 			this.getSettings();
@@ -173,29 +175,25 @@
 				currentChallenge.type === "gapFill"
 			) {
 				const correctIdx = currentChallenge.correctIndex;
-				setTimeout(() => {
-					document.querySelectorAll("[data-test=challenge-choice]")[correctIdx].click();
-				}, 0);
+				document.querySelectorAll("[data-test=challenge-choice]")[correctIdx].click();
 				this.next();
-			} else if (
+			} else if ( // translate || listenTap
 				currentChallenge.type === "translate" ||
 				currentChallenge.type === "listenTap"
-			) { // translate || listenTap
-				const finished = new Array(currentChallenge.choices.length);
-				finished.fill(false);
+			) {
+				const finished = new Array(currentChallenge.choices.length).fill(false);;
 				const choiceElems = document.querySelectorAll("[data-test=word-bank] button");
 				const choiceElemsText = document.querySelectorAll("[data-test=challenge-tap-token-text]");
 				let delay = 0;
 				currentChallenge.correctTokens.forEach((t) => {
 					for (const elemIdx in choiceElems) {
-						if (choiceElemsText[elemIdx].innerHTML === t && !finished[elemIdx]) {
-							setTimeout(() => {
-								choiceElems[elemIdx].click();
-							}, delay);
-							finished[elemIdx] = true;
-							delay += this.delayTranslateListentap + this.delayRandom1 * Math.random();
-							break;
-						}
+						if (choiceElemsText[elemIdx].innerHTML !== t || finished[elemIdx]) continue;
+						setTimeout(() => {
+							choiceElems[elemIdx].click();
+						}, delay);
+						finished[elemIdx] = true;
+						delay += this.delayTranslateListentap + this.delayRandom1 * Math.random();
+						break;
 					}
 				});
 				setTimeout(() => {
@@ -205,8 +203,7 @@
 				const pairs = currentChallenge.pairs;
 				const elems = document.querySelectorAll("span>button");
 				const elemsText = document.querySelectorAll("[data-test=challenge-tap-token-text]");
-				const finished = new Array(2 * pairs.length);
-				finished.fill(false);
+				const finished = new Array(2 * pairs.length).fill(false);
 				let elem1 = null;
 				let elem2 = null;
 				const clicks = [];
