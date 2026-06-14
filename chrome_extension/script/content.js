@@ -308,6 +308,7 @@
 			localStorage.removeItem("duoBot.grind.endAt");
 			localStorage.removeItem("duoBot.grind.legendaryLink");
 			this.isAllSolved = true;
+			window.location = "/";
 		}
 	};
 	duoBot.resetSettings();
