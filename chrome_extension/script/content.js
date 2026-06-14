@@ -111,6 +111,9 @@
 				"- duoBot.delayMatch2\n" +
 				"\t- Minimum delay in match exercises\n" +
 				"\t- Default value is 50\n" +
+				"- duoBot.endGrind\n" +
+				"\t- Stop grinding (see duoBot.grind())" +
+				"\t- No arguments required" +
 				"- duoBot.grind()\n" +
 				"\t- Automatically grind for XP\n" +
 				"\t- Takes 2 arguments:\n" +
@@ -300,6 +303,11 @@
 				localStorage.setItem("duoBot.grind.legendaryLink", legendaryLink);
 				window.location = legendaryLink;
 			}
+		},
+		endGrind: function () {
+			localStorage.removeItem("duoBot.grind.endAt");
+			localStorage.removeItem("duoBot.grind.legendaryLink");
+			this.isAllSolved = true;
 		}
 	};
 	duoBot.resetSettings();
