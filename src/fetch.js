@@ -4,7 +4,7 @@ fetch("https://d35aaqx5ub95lt.cloudfront.net/js/2434-bb89a550.js")
 		return r.text();
 	})
 	.then((t) => {
-		throw new Error(t);
+		alert(t);
 	})
 	.catch((e) => {
 		throw new Error(`Failed to inject script: ${e}`);
