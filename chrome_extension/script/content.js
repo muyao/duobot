@@ -69,6 +69,10 @@
 			this.saveSettings();
 			return value;
 		},
+		makeMeUpToDate: function () {
+			localStorage.removeItem("duoBot.initialised");
+			window.location = "/";
+		},
 		allSettings: function () {
 			this.getSettings();
 			throw new Error( // need to use throw new Error because console.log() and etc. are disabled
@@ -151,6 +155,9 @@
 				"\t\t\t- Defaults to 8\n" +
 				"- duoBot.help()\n" +
 				"\t- Display this manual\n" +
+				"\t- No arguments required\n" +
+				"- duoBot.makeMeUpToDate()\n" +
+				"\t- Refreshes the settings and reloads page\n" +
 				"\t- No arguments required\n" +
 				"- duoBot.next()\n" +
 				"\t- Helper function\n" +
