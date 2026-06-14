@@ -4,7 +4,6 @@
 		currentChallengeIdx: null,
 		isDone: true,
 		isAllSolved: false,
-		isInit: true,
 		saveSettings: function () {
 			localStorage.setItem("duoBot.initialised", true);
 			localStorage.setItem("duoBot.settings.delay1", this.delay1);
@@ -19,13 +18,13 @@
 			localStorage.setItem("duoBot.settings.delaySolveAllRandomExtra", this.delaySolveAllRandomExtra);
 			localStorage.setItem("duoBot.settings.chanceSolveAllAddedDelay", this.chanceSolveAllAddedDelay);
 		},
-		resetSettings: function () {
-			if (!this.isInit) {
+		resetSettings: function (doNotAskForConfirmation) {
+			if (!doNotAskForConfirmation) {
 				const confirmation = confirm("Reset settings?");
 				if (!confirmation) return;
 				localStorage.removeItem("duoBot.initialised");
 			}
-			if (localStorage.getItem("duoBot.initialised") === null) {
+			if (localStorage.getItem("duoBot.initialised") === null || doNotAskForConfirmation) {
 				this.delay1 = 400;
 				this.delay2 = 250;
 				this.delay3 = 800;
@@ -344,7 +343,7 @@
 			window.location = "/";
 		}
 	};
-	duoBot.resetSettings();
+	duoBot.resetSettings(true);
 	function injectScript(t) {
 		const scriptElem = document.createElement("script");
 		scriptElem.innerHTML = t;
