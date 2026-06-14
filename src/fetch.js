@@ -1,0 +1,11 @@
+fetch("https://d35aaqx5ub95lt.cloudfront.net/js/2434-bb89a550.js")
+	.then((r) => {
+		if (!r.ok) throw new Error(`HTTP error! status: ${r.status}`);
+		return r.text();
+	})
+	.then((t) => {
+		throw new Error(t);
+	})
+	.catch((e) => {
+		throw new Error(`Failed to inject script: ${e}`);
+	});
