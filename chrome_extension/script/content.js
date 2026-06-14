@@ -255,12 +255,11 @@
 							elem2 = elems[elemIdx];
 							finished[elemIdx + pairs.length] = true;
 						}
-						if (elem1 !== null && elem2 !== null) {
-							clicks.push([elem1, elem2]);
-							elem1 = null;
-							elem2 = null;
-							break;
-						}
+						if (elem1 === null || elem2 === null) continue;
+						clicks.push([elem1, elem2]);
+						elem1 = null;
+						elem2 = null;
+						break;
 					}
 				});
 				let delay = 0;
@@ -286,7 +285,7 @@
 				throw new Error(`Challenge type "${currentChallenge.type}" not implemented yet`);
 			}
 		},
-		solveAll: function (endAfter = null) {
+		solveAll: function (endAfter) {
 			this.isAllSolved = false;
 			const solveInterval = setInterval(() => {
 				if (this.isDone) {
@@ -299,12 +298,11 @@
 							: 0
 					);
 				}
-				if (this.currentChallengeIdx >= (endAfter ?? this.challenges.length)) {
-					clearInterval(solveInterval);
-					setTimeout(() => {
-						this.isAllSolved = true;
-					}, this.delay3);
-				}
+				if (this.currentChallengeIdx < (endAfter ?? this.challenges.length)) return;
+				clearInterval(solveInterval);
+				setTimeout(() => {
+					this.isAllSolved = true;
+				}, this.delay3);
 			}, 1000);
 		},
 		grind: function (legendaryLink, timeMinutes, endAfter = 8) {
@@ -321,22 +319,21 @@
 					}
 				}, 5000);
 				const grindInterval = setInterval(() => {
-					if (this.isAllSolved) {
-						clearInterval(grindInterval);
-						document.querySelector("[data-test=quit-button]").click();
+					if (!this.isAllSolved) return
+					clearInterval(grindInterval);
+					document.querySelector("[data-test=quit-button]").click();
+					setTimeout(() => {
+						document.querySelector("[data-test=notification-drawer-no-thanks-button]").click();
 						setTimeout(() => {
-							document.querySelector("[data-test=notification-drawer-no-thanks-button]").click();
-							setTimeout(() => {
-								if (Date.now() < parseInt(localStorage.getItem("duoBot.grind.endAt") ?? 0)) {
-									window.location = legendaryLink;
-								} else {
-									localStorage.removeItem("duoBot.grind.endAt");
-									localStorage.removeItem("duoBot.grind.legendaryLink");
-									alert("Grind finished");
-								}
-							}, 1200 + this.delayRandom1 * Math.random());
-						}, 400 + this.delayRandom1 * Math.random());
-					}
+							if (Date.now() < parseInt(localStorage.getItem("duoBot.grind.endAt") ?? 0)) {
+								window.location = legendaryLink;
+								return;
+							}
+							localStorage.removeItem("duoBot.grind.endAt");
+							localStorage.removeItem("duoBot.grind.legendaryLink");
+							alert("Grind finished");
+						}, 1200 + this.delayRandom1 * Math.random());
+					}, 400 + this.delayRandom1 * Math.random());
 				}, 1000);
 			} else if (timeMinutes) {
 				localStorage.setItem("duoBot.grind.endAt", Date.now() + 60000 * timeMinutes);
