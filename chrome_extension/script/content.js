@@ -5,7 +5,7 @@
 		isDone: true,
 		isAllSolved: false,
 		isInit: true,
-		syncSettings: function () {
+		saveSettings: function () {
 			localStorage.setItem("duoBot.initialised", true);
 			localStorage.setItem("duoBot.settings.delay1", this.delay1);
 			localStorage.setItem("duoBot.settings.delay2", this.delay2);
@@ -31,7 +31,7 @@
 				this.delayRandom1 = 400;
 				this.delayRandom2 = 100;
 				this.delayTranslateListentap = 100;
-				this.syncSettings();
+				this.saveSettings();
 			} else {
 				this.getSettingsFromLocalStorage();
 			}
@@ -51,7 +51,7 @@
 		changeSetting: function (setting, value) {
 			if (this[setting] === undefined) throw new Error(`Setting "${setting}" does not exist`);
 			this[setting] = value;
-			this.syncSettings();
+			this.saveSettings();
 			return value;
 		},
 		allSettings: function () {
