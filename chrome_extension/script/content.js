@@ -15,6 +15,9 @@
 			localStorage.setItem("duoBot.settings.delayRandom1", this.delayRandom1);
 			localStorage.setItem("duoBot.settings.delayRandom2", this.delayRandom2);
 			localStorage.setItem("duoBot.settings.delayTranslateListentap", this.delayTranslateListentap);
+			localStorage.setItem("duoBot.settings.delaySolveAllRandomMin", this.delaySolveAllRandomMin);
+			localStorage.setItem("duoBot.settings.delaySolveAllRandomExtra", this.delaySolveAllRandomExtra);
+			localStorage.setItem("duoBot.settings.chanceSolveAllAddedDelay", this.chanceSolveAllAddedDelay);
 		},
 		resetSettings: function () {
 			if (!this.isInit) {
@@ -31,6 +34,9 @@
 				this.delayRandom1 = 400;
 				this.delayRandom2 = 100;
 				this.delayTranslateListentap = 100;
+				this.delaySolveAllRandomMin = 900;
+				this.delaySolveAllRandomExtra = 1000;
+				this.chanceSolveAllAddedDelay = 0.125;
 				this.saveSettings();
 			} else {
 				this.getSettings();
@@ -47,6 +53,15 @@
 			this.delayRandom2 = parseInt(localStorage.getItem("duoBot.settings.delayRandom2") ?? 100);
 			this.delayTranslateListentap = parseInt(
 				localStorage.getItem("duoBot.settings.delayTranslateListentap") ?? 100
+			);
+			this.delaySolveAllRandomMin = parseInt(
+				localStorage.getItem("duoBot.settings.delaySolveAllRandomMin") ?? 900
+			);
+			this.delaySolveAllRandomExtra = parseInt(
+				localStorage.getItem("duoBot.settings.delaySolveAllRandomExtra") ?? 1000
+			);
+			this.chanceSolveAllAddedDelay = parseFloat(
+				localStorage.getItem("duoBot.settings.chanceSolveAllAddedDelay") ?? 0.125
 			);
 		},
 		changeSetting: function (setting, value) {
@@ -68,6 +83,9 @@
 				`- delayRandom1: ${this.delayRandom1}\n` +
 				`- delayRandom1: ${this.delayRandom2}\n` +
 				`- delayTranslateListentap: ${this.delayTranslateListentap}\n` +
+				`- delaySolveAllRandomMin: ${this.delaySolveAllRandomMin}\n` +
+				`- delaySolveAllRandomExtra: ${this.delaySolveAllRandomExtra}\n` +
+				`- chanceSolveAllAddedDelay: ${this.chanceSolveAllAddedDelay}\n` +
 				"\n\n"
 			)
 		},
@@ -81,6 +99,10 @@
 				"===== DuoBot Help Manual =====\n" +
 				"- duoBot.challenges\n" +
 				"\t- Array of challenges in current lesson\n" +
+				"- duoBot.chanceSolveAllAddedDelay\n" +
+				"\t- Chance to get an extra delay in solveAll to avoid getting flagged as a bot\n" +
+				"\t- Default value is 0.125" +
+				"\t- Set to 0 to never happen" +
 				"- duoBot.changeSetting()\n" +
 				"\t- Change settings (see rest of manual)\n" +
 				"\t- Takes 2 arguments:\n" +
@@ -97,29 +119,37 @@
 				"- duoBot.delay3\n" +
 				"\t- Delay between completing exercise and beginning first action on second exercise\n" +
 				"\t- Default value is 800\n" +
-				"- duoBot.delayRandom1\n" +
-				"\t- Max. added random delay in translate, listenTap and match exercises\n" +
-				"\t- Default value is 400\n" +
-				"- duoBot.delayRandom2\n" +
-				"\t- Max. added random delay in general and in match exercises\n" +
-				"\t- Default value is 100\n" +
-				"- duoBot.delayTranslateListentap\n" +
-				"\t- Minimum delay in translate and listenTap exercises\n" +
-				"\t- Default value is 100\n" +
 				"- duoBot.delayMatch1\n" +
 				"\t- Minimum delay in match exercises\n" +
 				"\t- Default value is 100\n" +
 				"- duoBot.delayMatch2\n" +
 				"\t- Minimum delay in match exercises\n" +
 				"\t- Default value is 50\n" +
+				"- duoBot.delayRandom1\n" +
+				"\t- Max. added random delay in translate, listenTap and match exercises\n" +
+				"\t- Default value is 400\n" +
+				"- duoBot.delayRandom2\n" +
+				"\t- Max. added random delay in general and in match exercises\n" +
+				"\t- Default value is 100\n" +
+				"- duoBot.delaySolveAllRandomExtra\n" +
+				"\t- Additional delay added on top of duoBot.delaySolveAllRandomMin\n" +
+				"\t- Default value is 1000\n" +
+				"- duoBot.delaySolveAllRandomMin\n" +
+				"\t- Minimal random delay in solveAll\n" +
+				"\t- Default value is 900\n" +
+				"- duoBot.delayTranslateListentap\n" +
+				"\t- Minimum delay in translate and listenTap exercises\n" +
+				"\t- Default value is 100\n" +
 				"- duoBot.endGrind\n" +
 				"\t- Stop grinding (see duoBot.grind())" +
 				"\t- No arguments required" +
 				"- duoBot.grind()\n" +
 				"\t- Automatically grind for XP\n" +
-				"\t- Takes 2 arguments:\n" +
+				"\t- Takes 3 arguments:\n" +
 				"\t\t- legendaryLink: Link to the legendary level\n" +
 				"\t\t- timeMinutes: End after # minutes\n" +
+				"\t\t- endAfter: End each lesson after # exercises\n" +
+				"\t\t\t- Defaults to 8\n" +
 				"- duoBot.help()\n" +
 				"\t- Display this manual\n" +
 				"\t- No arguments required\n" +
@@ -253,7 +283,14 @@
 			this.isAllSolved = false;
 			const solveInterval = setInterval(() => {
 				if (this.isDone) {
-					this.solveThis();
+					this.isDone = false;
+					setTimeout(() => {
+						this.solveThis();
+					},
+						Math.random() < this.chanceSolveAllAddedDelay
+							? this.delaySolveAllRandomMin + this.delaySolveAllRandomExtra * Math.random()
+							: 0
+					);
 				}
 				if (this.currentChallengeIdx >= (endAfter ?? this.challenges.length)) {
 					clearInterval(solveInterval);
@@ -263,7 +300,7 @@
 				}
 			}, 1000);
 		},
-		grind: function (legendaryLink, timeMinutes) {
+		grind: function (legendaryLink, timeMinutes, endAfter = 8) {
 			const endAt = localStorage.getItem("duoBot.grind.endAt");
 			if (endAt) {
 				if (window.location.href !== legendaryLink) return false;
@@ -271,7 +308,7 @@
 				setTimeout(() => {
 					try {
 						document.querySelector("[data-test=player-next]").click();
-						this.solveAll(8);
+						this.solveAll(endAfter);
 					} catch {
 						window.location = legendaryLink;
 					}
