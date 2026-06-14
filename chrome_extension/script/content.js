@@ -18,13 +18,13 @@
 			localStorage.setItem("duoBot.settings.delaySolveAllRandomExtra", this.delaySolveAllRandomExtra);
 			localStorage.setItem("duoBot.settings.chanceSolveAllAddedDelay", this.chanceSolveAllAddedDelay);
 		},
-		resetSettings: function (doNotAskForConfirmation) {
-			if (!doNotAskForConfirmation) {
+		resetSettings: function (dontAskForConfirmation) {
+			if (localStorage.getItem("duoBot.initialised") !== null && !dontAskForConfirmation) {
 				const confirmation = confirm("Reset settings?");
 				if (!confirmation) return;
 				localStorage.removeItem("duoBot.initialised");
 			}
-			if (localStorage.getItem("duoBot.initialised") === null || doNotAskForConfirmation) {
+			if (localStorage.getItem("duoBot.initialised") === null) {
 				this.delay1 = 400;
 				this.delay2 = 250;
 				this.delay3 = 800;
