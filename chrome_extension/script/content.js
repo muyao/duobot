@@ -33,9 +33,9 @@
 				this.delayRandom1 = 400;
 				this.delayRandom2 = 100;
 				this.delayTranslateListentap = 100;
-				this.delaySolveAllRandomMin = 900;
-				this.delaySolveAllRandomExtra = 1000;
-				this.chanceSolveAllAddedDelay = 0.125;
+				this.delaySolveAllRandomMin = 1200;
+				this.delaySolveAllRandomExtra = 1500;
+				this.chanceSolveAllAddedDelay = 0.1;
 				this.saveSettings();
 			} else {
 				this.getSettings();
@@ -54,13 +54,13 @@
 				localStorage.getItem("duoBot.settings.delayTranslateListentap") ?? 100
 			);
 			this.delaySolveAllRandomMin = parseInt(
-				localStorage.getItem("duoBot.settings.delaySolveAllRandomMin") ?? 900
+				localStorage.getItem("duoBot.settings.delaySolveAllRandomMin") ?? 1200
 			);
 			this.delaySolveAllRandomExtra = parseInt(
-				localStorage.getItem("duoBot.settings.delaySolveAllRandomExtra") ?? 1000
+				localStorage.getItem("duoBot.settings.delaySolveAllRandomExtra") ?? 1500
 			);
 			this.chanceSolveAllAddedDelay = parseFloat(
-				localStorage.getItem("duoBot.settings.chanceSolveAllAddedDelay") ?? 0.125
+				localStorage.getItem("duoBot.settings.chanceSolveAllAddedDelay") ?? 0.1
 			);
 		},
 		changeSetting: function (setting, value) {
