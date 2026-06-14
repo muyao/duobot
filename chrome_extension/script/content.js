@@ -291,8 +291,8 @@
 									localStorage.removeItem("duoBot.grind.legendaryLink");
 									alert("Grind finished");
 								}
-							}, 1200);
-						}, 400);
+							}, 1200 + this.delayRandom1 * Math.random());
+						}, 400 + this.delayRandom1 * Math.random());
 					}
 				}, 1000);
 			} else if (timeMinutes) {
