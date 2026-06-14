@@ -83,9 +83,9 @@
 				`- delay2: ${this.delay2}\n` +
 				`- delay3: ${this.delay3}\n` +
 				`- delayMatch1: ${this.delayMatch1}\n` +
-				`- delayMatch1: ${this.delayMatch2}\n` +
+				`- delayMatch2: ${this.delayMatch2}\n` +
 				`- delayRandom1: ${this.delayRandom1}\n` +
-				`- delayRandom1: ${this.delayRandom2}\n` +
+				`- delayRandom2: ${this.delayRandom2}\n` +
 				`- delayTranslateListentap: ${this.delayTranslateListentap}\n` +
 				`- delaySolveAllRandomMin: ${this.delaySolveAllRandomMin}\n` +
 				`- delaySolveAllRandomExtra: ${this.delaySolveAllRandomExtra}\n` +
