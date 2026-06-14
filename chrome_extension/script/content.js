@@ -33,12 +33,11 @@
 				this.delayTranslateListentap = 100;
 				this.saveSettings();
 			} else {
-				this.getSettingsFromLocalStorage();
+				this.getSettings();
 			}
-			this.isInit = false;
 			return "Settings have been reset";
 		},
-		getSettingsFromLocalStorage: function () {
+		getSettings: function () {
 			this.delay1 = parseInt(localStorage.getItem("duoBot.settings.delay1") ?? 400);
 			this.delay2 = parseInt(localStorage.getItem("duoBot.settings.delay2") ?? 250);
 			this.delay3 = parseInt(localStorage.getItem("duoBot.settings.delay3") ?? 800);
@@ -55,7 +54,7 @@
 			return value;
 		},
 		allSettings: function () {
-			this.getSettingsFromLocalStorage();
+			this.getSettings();
 			throw new Error( // need to use throw new Error because console.log() and etc. are disabled
 				"\n\n\n" +
 				"===== Settings =====\n" +
@@ -165,7 +164,7 @@
 			}, this.delay1 + this.delay2 + this.delayRandom2 * Math.random());
 		},
 		solveThis: function () {
-			this.getSettingsFromLocalStorage();
+			this.getSettings();
 			this.isDone = false;
 			const currentChallenge = this.challenges[this.currentChallengeIdx];
 			if ( // select || assist || gapFill
