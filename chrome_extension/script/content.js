@@ -152,6 +152,7 @@
 				"\t- Takes 3 arguments:\n" +
 				"\t\t- legendaryLink: Link to the legendary level\n" +
 				"\t\t- timeMinutes: End after # minutes\n" +
+				"\t\t\t- Defaults to 90\n" +
 				"\t\t- endAfter: End each lesson after # exercises\n" +
 				"\t\t\t- Defaults to 8\n" +
 				"- duoBot.help()\n" +
@@ -305,7 +306,7 @@
 				}, this.delay3);
 			}, 1000);
 		},
-		grind: function (legendaryLink, timeMinutes, endAfter = 8) {
+		grind: function (legendaryLink, timeMinutes = 90, endAfter = 8) {
 			const endAt = localStorage.getItem("duoBot.grind.endAt");
 			if (endAt) {
 				if (window.location.href !== legendaryLink) return false;
