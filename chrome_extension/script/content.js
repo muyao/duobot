@@ -33,8 +33,8 @@
 				this.delayRandom1 = 400;
 				this.delayRandom2 = 100;
 				this.delayTranslateListentap = 100;
-				this.delaySolveAllRandomMin = 1200;
-				this.delaySolveAllRandomExtra = 1500;
+				this.delaySolveAllRandomMin = 1500;
+				this.delaySolveAllRandomExtra = 2000;
 				this.chanceSolveAllAddedDelay = 0.1;
 				this.saveSettings();
 			} else {
