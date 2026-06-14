@@ -64,7 +64,8 @@
 			);
 		},
 		changeSetting: function (setting, value) {
-			if (this[setting] === undefined) throw new Error(`Setting "${setting}" does not exist`);
+			if (this[setting] ?? true) throw new Error(`Setting "${setting}" does not exist`);
+			if (value ?? true) throw new Error(`Please provide a value!`);
 			this[setting] = value;
 			this.saveSettings();
 			return value;
