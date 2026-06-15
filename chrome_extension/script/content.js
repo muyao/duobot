@@ -149,12 +149,10 @@
 				"\t- No arguments required\n" +
 				"- duoBot.grind()\n" +
 				"\t- Automatically grind for XP\n" +
-				"\t- Takes 3 arguments:\n" +
+				"\t- Takes 2 arguments:\n" +
 				"\t\t- legendaryLink: Link to the legendary level\n" +
 				"\t\t- timeMinutes: End after # minutes\n" +
 				"\t\t\t- Defaults to 90\n" +
-				"\t\t- endAfter: End each lesson after # exercises\n" +
-				"\t\t\t- Defaults to 8\n" +
 				"- duoBot.help()\n" +
 				"\t- Display this manual\n" +
 				"\t- No arguments required\n" +
@@ -306,7 +304,7 @@
 				}, this.delay3);
 			}, 1000);
 		},
-		grind: function (legendaryLink, timeMinutes = 90, endAfter = 8) {
+		grind: function (legendaryLink, timeMinutes = 90) {
 			const endAt = localStorage.getItem("duoBot.grind.endAt");
 			if (endAt) {
 				if (window.location.href !== legendaryLink) return false;
@@ -314,7 +312,7 @@
 				setTimeout(() => {
 					try {
 						document.querySelector("[data-test=player-next]").click();
-						this.solveAll(endAfter);
+						this.solveAll(8);
 					} catch {
 						window.location = legendaryLink;
 					}
