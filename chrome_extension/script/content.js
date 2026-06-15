@@ -30,12 +30,12 @@
 				this.delay3 = 800;
 				this.delayMatch1 = 100;
 				this.delayMatch2 = 50;
-				this.delayRandom1 = 400;
+				this.delayRandom1 = 800;
 				this.delayRandom2 = 100;
-				this.delayTranslateListentap = 100;
+				this.delayTranslateListentap = 200;
 				this.delaySolveAllRandomMin = 1500;
 				this.delaySolveAllRandomExtra = 2000;
-				this.chanceSolveAllAddedDelay = 0.1;
+				this.chanceSolveAllAddedDelay = 0.15;
 				this.saveSettings();
 			} else {
 				this.getSettings();
@@ -48,19 +48,19 @@
 			this.delay3 = parseInt(localStorage.getItem("duoBot.settings.delay3") ?? 800);
 			this.delayMatch1 = parseInt(localStorage.getItem("duoBot.settings.delayMatch1") ?? 100);
 			this.delayMatch2 = parseInt(localStorage.getItem("duoBot.settings.delayMatch2") ?? 50);
-			this.delayRandom1 = parseInt(localStorage.getItem("duoBot.settings.delayRandom1") ?? 400);
+			this.delayRandom1 = parseInt(localStorage.getItem("duoBot.settings.delayRandom1") ?? 800);
 			this.delayRandom2 = parseInt(localStorage.getItem("duoBot.settings.delayRandom2") ?? 100);
 			this.delayTranslateListentap = parseInt(
-				localStorage.getItem("duoBot.settings.delayTranslateListentap") ?? 100
+				localStorage.getItem("duoBot.settings.delayTranslateListentap") ?? 200
 			);
 			this.delaySolveAllRandomMin = parseInt(
-				localStorage.getItem("duoBot.settings.delaySolveAllRandomMin") ?? 1200
+				localStorage.getItem("duoBot.settings.delaySolveAllRandomMin") ?? 1500
 			);
 			this.delaySolveAllRandomExtra = parseInt(
-				localStorage.getItem("duoBot.settings.delaySolveAllRandomExtra") ?? 1500
+				localStorage.getItem("duoBot.settings.delaySolveAllRandomExtra") ?? 2000
 			);
 			this.chanceSolveAllAddedDelay = parseFloat(
-				localStorage.getItem("duoBot.settings.chanceSolveAllAddedDelay") ?? 0.1
+				localStorage.getItem("duoBot.settings.chanceSolveAllAddedDelay") ?? 0.15
 			);
 		},
 		changeSetting: function (setting, value) {
@@ -105,7 +105,7 @@
 				"\t- Array of challenges in current lesson\n" +
 				"- duoBot.chanceSolveAllAddedDelay\n" +
 				"\t- Chance to get an extra delay in solveAll to avoid getting flagged as a bot\n" +
-				"\t- Default value is 0.125" +
+				"\t- Default value is 0.15" +
 				"\t- Set to 0 to never happen" +
 				"- duoBot.changeSetting()\n" +
 				"\t- Change settings (see rest of manual)\n" +
@@ -131,19 +131,19 @@
 				"\t- Default value is 50\n" +
 				"- duoBot.delayRandom1\n" +
 				"\t- Max. added random delay in translate, listenTap and match exercises\n" +
-				"\t- Default value is 400\n" +
+				"\t- Default value is 800\n" +
 				"- duoBot.delayRandom2\n" +
 				"\t- Max. added random delay in general and in match exercises\n" +
 				"\t- Default value is 100\n" +
 				"- duoBot.delaySolveAllRandomExtra\n" +
 				"\t- Additional delay added on top of duoBot.delaySolveAllRandomMin\n" +
-				"\t- Default value is 1000\n" +
+				"\t- Default value is 2000\n" +
 				"- duoBot.delaySolveAllRandomMin\n" +
 				"\t- Minimal random delay in solveAll\n" +
-				"\t- Default value is 900\n" +
+				"\t- Default value is 1500\n" +
 				"- duoBot.delayTranslateListentap\n" +
 				"\t- Minimum delay in translate and listenTap exercises\n" +
-				"\t- Default value is 100\n" +
+				"\t- Default value is 200\n" +
 				"- duoBot.endGrind\n" +
 				"\t- Stop grinding (see duoBot.grind())\n" +
 				"\t- No arguments required\n" +
