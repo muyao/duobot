@@ -76,3 +76,5 @@ This is a Chrome extension, so make sure you have Google Chrome installed.
 **Use at your own risk.** Duolingo Bots violate their Terms of Service, and doing so might result in your account being flagged, shadow-banned, or permanently terminated. I (`muyao`) am not responsible for any consequences that arise from using this extension.
 
 ***Duo is always watching.***
+
+*Last source code update: Tue, 16 Jun 2026 14:36:52 GMT*
