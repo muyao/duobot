@@ -6,7 +6,7 @@
 			"type": "block"
 		},
 		"condition": {
-			"urlFilter": "https://d35aaqx5ub95lt.cloudfront.net/js/2434-bb89a550.js",
+			"urlFilter": "https://d35aaqx5ub95lt.cloudfront.net/js/app-264b8a12.js",
 			"resourceTypes": [
 				"script"
 			]
