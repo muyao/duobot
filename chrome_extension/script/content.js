@@ -348,33 +348,6 @@
 		}
 	};
 	duoBot.resetSettings(true);
-	function injectScript(t) {
-		const scriptElem = document.createElement("script");
-		scriptElem.innerHTML = t;
-		document.head.appendChild(scriptElem);
-	}
-	fetch("https://cdn.jsdelivr.net/gh/muyao/duobot@main/src/src.js")
-		.then((r) => {
-			if (!r.ok) throw new Error(`HTTP error! status: ${r.status}`);
-			return r.text();
-		})
-		.then((t) => {
-			injectScript(t);
-		})
-		.catch((e) => {
-			throw new Error(`Failed to inject script: ${e}`);
-		});
-	fetch("https://cdn.jsdelivr.net/gh/muyao/duobot@main/src/src2.js")
-		.then((r) => {
-			if (!r.ok) throw new Error(`HTTP error! status: ${r.status}`);
-			return r.text();
-		})
-		.then((t) => {
-			injectScript(t);
-		})
-		.catch((e) => {
-			throw new Error(`Failed to inject script: ${e}`);
-		});
 	if (window.location.href === localStorage.getItem("duoBot.grind.legendaryLink")) {
 		duoBot.grind(window.location.href);
 	}
