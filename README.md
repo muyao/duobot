@@ -57,11 +57,16 @@ This is a Chrome extension, so make sure you have Google Chrome installed.
 
 * `duoBot.help()` displays the help menu
 
-*  `duoBot.solveThis()` solves the current exercise
+* `duoBot.solveThis()` solves the current exercise
 
 * `duoBot.solveAll()` solves all exercises in the current lesson
 
-   *Note: `duoBot.solveThis()` and `duoBot.solveAll()` only work consistently for legendary lessons. They may break / not work / solve exercises wrong on lessons other than legendary*
+* `duoBot.grind()` farms XP until the specified time is reached or `duoBot.endGrind()` gets called
+   * `duoBot.grind()` takes 2 arguments: `legendaryLink` and `timeMinutes`
+   * `legendaryLink` is required (see above), `timeMinutes` is optional
+   * `timeMinutes` dictates for how long it should farm XP, defaults to 90 minutes
+
+   *Note: `duoBot.solveThis()`, `duoBot.solveAll()` and `duoBot.grind()` only work consistently for legendary lessons. They may break / not work / solve exercises wrong on lessons other than legendary*
 
 * `duoBot.makeMeUpToDate()` refreshes and resets settings, reloads page.
 
@@ -77,4 +82,4 @@ This is a Chrome extension, so make sure you have Google Chrome installed.
 
 ***Duo is always watching.***
 
-*Last updated: Tue, 16 Jun 2026 15:28:27 GMT*
+*Last updated: Tue, 16 Jun 2026 15:38:00 GMT*
