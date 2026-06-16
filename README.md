@@ -77,4 +77,4 @@ This is a Chrome extension, so make sure you have Google Chrome installed.
 
 ***Duo is always watching.***
 
-*Last source code update: Tue, 16 Jun 2026 14:36:52 GMT*
+*Last updated: Tue, 16 Jun 2026 15:28:27 GMT*
