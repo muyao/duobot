@@ -7367,6 +7367,7 @@
 				let l = (0,
 					k.is)(n());
 				window.duoBot.challenges = l.challenges; // duoBot added
+				window.duoBot.currentChallengeIdx++; // duoBot added
 				const c = (0,
 					k.oe)(n())
 					, d = (0,
