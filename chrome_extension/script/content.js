@@ -213,10 +213,9 @@
 				const correctIdx = currentChallenge.correctIndex;
 				document.querySelectorAll("[data-test=challenge-choice]")[correctIdx].click();
 				this.next();
-			} else if ( // translate || listenTap || listenSpeak
+			} else if ( // translate || listenTap
 				currentChallenge.type === "translate" ||
-				currentChallenge.type === "listenTap" ||
-				currentChallenge.type === "listenSpeak"
+				currentChallenge.type === "listenTap"
 			) {
 				const finished = new Array(currentChallenge.choices.length).fill(false);;
 				const choiceElems = document.querySelectorAll("[data-test=word-bank] button");
