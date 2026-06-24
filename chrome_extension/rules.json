@@ -6,7 +6,7 @@
 			"type": "block"
 		},
 		"condition": {
-			"urlFilter": "https://d35aaqx5ub95lt.cloudfront.net/js/app-264b8a12.js",
+			"urlFilter": "https://d35aaqx5ub95lt.cloudfront.net/js/app-660a49d3.js",
 			"resourceTypes": [
 				"script"
 			]
@@ -19,7 +19,7 @@
 			"type": "block"
 		},
 		"condition": {
-			"urlFilter": "https://d35aaqx5ub95lt.cloudfront.net/js/501-35d64c46.js",
+			"urlFilter": "https://d35aaqx5ub95lt.cloudfront.net/js/8709-9cfa30bb.js",
 			"resourceTypes": [
 				"script"
 			]
