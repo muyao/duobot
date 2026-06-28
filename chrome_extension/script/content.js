@@ -72,7 +72,7 @@
 		},
 		makeMeUpToDate: function () {
 			localStorage.removeItem("duoBot.initialised");
-			window.location = "/";
+			window.location.href = "/";
 		},
 		allSettings: function () {
 			this.getSettings();
@@ -281,6 +281,9 @@
 			} else if (currentChallenge.type === "listenMatch") { // listenMatch
 				this.skip();
 			} else {
+				if (localStorage.getItem("duoBot.grind.endAt")) {
+					window.location.href = localStorage.getItem("duoBot.grind.legendaryLink");
+				}
 				throw new Error(`Challenge type "${currentChallenge.type}" not implemented yet`);
 			}
 		},
@@ -314,7 +317,7 @@
 						document.querySelector("[data-test=player-next]").click();
 						this.solveAll(8);
 					} catch {
-						window.location = legendaryLink;
+						window.location.href = legendaryLink;
 					}
 				}, 5000);
 				const grindInterval = setInterval(() => {
@@ -325,7 +328,7 @@
 						document.querySelector("[data-test=notification-drawer-no-thanks-button]").click();
 						setTimeout(() => {
 							if (Date.now() < parseInt(localStorage.getItem("duoBot.grind.endAt") ?? 0)) {
-								window.location = legendaryLink;
+								window.location.href = legendaryLink;
 								return;
 							}
 							localStorage.removeItem("duoBot.grind.endAt");
@@ -337,14 +340,14 @@
 			} else if (timeMinutes) {
 				localStorage.setItem("duoBot.grind.endAt", Date.now() + 60000 * timeMinutes);
 				localStorage.setItem("duoBot.grind.legendaryLink", legendaryLink);
-				window.location = legendaryLink;
+				window.location.href = legendaryLink;
 			}
 		},
 		endGrind: function () {
 			localStorage.removeItem("duoBot.grind.endAt");
 			localStorage.removeItem("duoBot.grind.legendaryLink");
 			this.isAllSolved = true;
-			window.location = "/";
+			window.location.href = "/";
 		}
 	};
 	duoBot.resetSettings(true);
