@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "DuoBot",
-	"version": "1.12.5",
+	"version": "1.12.6",
 	"description": "Don't let Duo know...",
 	"permissions": [
 		"declarativeNetRequest"
@@ -37,7 +37,7 @@
 		},
 		{
 			"js": [
-				"script/src/app-1cecaf77.js"
+				"script/src/app-2d631535.js"
 			],
 			"matches": [
 				"*://*.duolingo.com/*"
@@ -47,7 +47,7 @@
 		},
 		{
 			"js": [
-				"script/src/1701-47a663a3.js"
+				"script/src/1701-db4aaab8.js"
 			],
 			"matches": [
 				"*://*.duolingo.com/*"

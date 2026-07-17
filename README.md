@@ -82,4 +82,6 @@ This is a Chrome extension, so make sure you have Google Chrome installed.
 
 ***Duo is always watching.***
 
-*Last updated: Wed, 01 Jul 2026 14:36:09 GMT
+*v1.12.6*
+
+*Fri, 17 Jul 2026 14:54:00 GMT*
