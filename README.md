@@ -84,4 +84,4 @@ This is a Chrome extension, so make sure you have Google Chrome installed.
 
 *v1.12.6*
 
-*Fri, 17 Jul 2026 14:54:00 GMT*
+*Mon, 10 Aug 2026 11:27:05 GMT*
