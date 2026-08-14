@@ -237,21 +237,20 @@
 				}, delay);
 			} else if (currentChallenge.type === "match") { // match
 				const pairs = currentChallenge.pairs;
-				const elems = document.querySelectorAll("span>button");
 				const elemsText = document.querySelectorAll("[data-test=challenge-tap-token-text]");
 				const finished = new Array(2 * pairs.length).fill(false);
 				let elem1 = null;
 				let elem2 = null;
 				const clicks = [];
 				pairs.forEach((p) => {
-					for (const elemIdx in elems) {
+					for (const elemIdx in elemsText) {
 						if (elemsText[elemIdx].innerHTML === p.fromToken && !finished[elemIdx]) {
-							elem1 = elems[elemIdx];
+							elem1 = elemsText[elemIdx];
 							finished[elemIdx] = true;
 						} else if (
 							elemsText[elemIdx].innerHTML === p.learningToken && !finished[elemIdx + pairs.length]
 						) {
-							elem2 = elems[elemIdx];
+							elem2 = elemsText[elemIdx];
 							finished[elemIdx + pairs.length] = true;
 						}
 						if (elem1 === null || elem2 === null) continue;
@@ -325,7 +324,8 @@
 					clearInterval(grindInterval);
 					document.querySelector("[data-test=quit-button]").click();
 					setTimeout(() => {
-						document.querySelector("[data-test=notification-drawer-no-thanks-button]").click();
+						const noThanksButton = document.querySelector("[data-test=notification-drawer-no-thanks-button] > span");
+						if (noThanksButton.innerHTML == "End session") noThanksButton.click();
 						setTimeout(() => {
 							if (Date.now() < parseInt(localStorage.getItem("duoBot.grind.endAt") ?? 0)) {
 								window.location.href = legendaryLink;
