@@ -217,11 +217,41 @@
 				currentChallenge.type === "translate" ||
 				currentChallenge.type === "listenTap"
 			) {
+				let textarea = document.querySelector("[data-test=challenge-translate-input]");
+				if (textarea) document.querySelector("[data-test=player-toggle-keyboard]").click();
+				textarea = document.querySelector("[data-test=challenge-translate-input]");
 				const finished = new Array(currentChallenge.choices.length).fill(false);;
 				const choiceElems = document.querySelectorAll("[data-test=word-bank] button");
 				const choiceElemsText = document.querySelectorAll("[data-test=challenge-tap-token-text]");
 				let delay = 0;
 				currentChallenge.correctTokens.forEach((t) => {
+					for (const elemIdx in choiceElems) {
+						if (choiceElemsText[elemIdx].innerHTML !== t || finished[elemIdx]) continue;
+						setTimeout(() => {
+							choiceElems[elemIdx].click();
+						}, delay);
+						finished[elemIdx] = true;
+						delay += this.delayTranslateListentap + this.delayRandom1 * Math.random();
+						break;
+					}
+				});
+				setTimeout(() => {
+					this.next();
+				}, delay);
+			} else if ( // listenSpeak
+				currentChallenge.type === "listenSpeak"
+			) {
+				let textarea = document.querySelector("[data-test=challenge-translate-input]");
+				if (textarea) document.querySelector("[data-test=player-toggle-keyboard]").click();
+				textarea = document.querySelector("[data-test=challenge-translate-input]");
+				const finished = new Array(currentChallenge.choices.length).fill(false);;
+				const choiceElems = document.querySelectorAll("[data-test=word-bank] button");
+				const choiceElemsText = document.querySelectorAll("[data-test=challenge-tap-token-text]");
+				let delay = 0;
+				const correctTokens = currentChallenge.correctIndices.map((idx) => {
+					return currentChallenge.tokens[idx].value;
+				});
+				correctTokens.forEach((t) => {
 					for (const elemIdx in choiceElems) {
 						if (choiceElemsText[elemIdx].innerHTML !== t || finished[elemIdx]) continue;
 						setTimeout(() => {
